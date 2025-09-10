@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useAuth } from "@/hooks/use-auth"
 import { useLocation } from "react-router-dom"
 
 // Navigation links array to be used in both desktop and mobile menus
@@ -22,6 +23,7 @@ const navigationLinks = [
 
 export function Navbar() {
   const location = useLocation()
+  const { handleLogout } = useAuth()
 
   return (
     <header className="border-b px-4 md:px-6">
@@ -98,9 +100,14 @@ export function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-4">
           {/* Switch */}
-          <div>
-            <span>Logo</span>
-          </div>
+          <span>Logo</span>
+          <Button
+            className="font-normal cursor-pointer"
+            onClick={handleLogout}
+            variant="ghost"
+          >
+            Sair
+          </Button>
         </div>
       </div>
     </header>
